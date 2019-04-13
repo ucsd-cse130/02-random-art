@@ -1,6 +1,6 @@
 
 #####################################################################################################
-COURSE=cs130w
+COURSE=cs130sp19
 ASGN=02
 NAME=random-art
 STACK=stack --allow-different-user
@@ -30,12 +30,13 @@ distclean: clean
 
 tags:
 	hasktags -x -c lib/
-  
-turnin: 
-	# rm -rf .stack-work
-	rm -rf ./$(ASGN)-$(NAME).tgz
-	tar -zcvf ../$(ASGN)-$(NAME).tgz --exclude .stack-work --exclude .git ../$(ASGN)-$(NAME)
-	mv ../$(ASGN)-$(NAME).tgz . 
-	turnin -c $(COURSE) -p $(ASGN) ./$(ASGN)-$(NAME).tgz  
-  
 
+turnin:
+	git commit -a -m "turnin"
+	git push origin master
+
+upstream:
+	git remote add upstream https://github.com/ucsd-cse130/02-random-art.git
+
+update:
+	git pull upstream master
