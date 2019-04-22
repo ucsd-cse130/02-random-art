@@ -1,6 +1,6 @@
 # Assignment 2: Random Art (160 points)
 
-## Due by ~~Monday 2/4 1pm~~ Wednesday 2/6 1pm
+## Due by {TODO, RJ please put date here} 23:59:59
 
 
 ## Overview
@@ -8,20 +8,19 @@
 The objective of this assignment is for you to have fun learning
 about recursion, recursive datatypes, and make some pretty
 cool pictures. All the problems require relatively little
-code ranging from 2 to 10 lines. If any function requires
-more than that, you can be sure that you need to rethink
-your solution.
+code: somewhere between 2 to 10 lines. If any function requires
+more than that, you should rethink your solution.
 
 
 The assignment is in the files:
 
 1. [src/TailRecursion.hs](/src/TailRecursion.hs) and
-   [src/RandomArt.hs](/src/RandomArt.hs) has skeleton
-   functions with missing bodies that you will fill in,
+   [src/RandomArt.hs](/src/RandomArt.hs) have skeleton
+   functions with missing bodies for you to fill in,
 
-2. [tests/Test.hs](/tests/Test.hs) has some sample tests,
-   and testing code that you will use to check your
-   assignments before submitting.
+2. [tests/Test.hs](/tests/Test.hs) has some sample tests
+   and a test harness for you to check your
+   solutions before submitting.
 
 You should only need to modify the parts of the files which say:
 
@@ -35,11 +34,12 @@ with suitable Haskell implementations.
 
 Your functions/programs **must** compile and run on `ieng6.ucsd.edu`.
 
-Most of the points, will be awarded automatically, by
+Most of the points will be awarded automatically by
 **evaluating your functions against a given test suite**.
 
 [Tests.hs](/tests/Test.hs) contains a very small suite
-of tests which gives you a flavor of of these tests.
+of tests which should give you a flavor of the sorts of tests
+your assignment will be graded against.
 When you run
 
 ```shell
@@ -62,8 +62,8 @@ OVERALL SCORE = ... / ...
 
 **If your output does not have one of the above your code will receive a zero**
 
-If for some problem, you cannot get the code to compile,
-leave it as is with the `error ...` with your partial
+If, for some problem, you cannot get the code to compile,
+leave it as in the starter code (with `error ...`), with your partial
 solution enclosed below as a comment.
 
 The other lines will give you a readout for each test.
@@ -78,19 +78,11 @@ To submit your code, just do:
 $ make turnin
 ```
 
-`turnin` will provide you with a confirmation of the
-submission process; make sure that the size of the file
-indicated by `turnin` matches the size of your file.
-See the ACS Web page on [turnin](http://acs.ucsd.edu/info/turnin.php)
-for more information on the operation of the program.
-
-
 ## Problem #1: Tail Recursion
 
 We say that a function is *tail recursive*
 if every recursive call is a [tail call](https://wiki.haskell.org/Tail_recursion)
-whose value is immediately
-returned by the procedure.
+whose value is immediately returned by the procedure.
 
 ### (a) 15 points
 
@@ -257,12 +249,12 @@ ghci> fixpointW g 0
 ## Problem #2: Random Art
 
 At the end of this assignment, you should be able to produce
-pictures of the kind shown below. To do so, we shall devise a
-grammar for a certain class of expressions, design a Haskell
-datatype whose values correspond to such expressions, write
-code to evaluate the expressions, and then write a function
-that randomly generates such expressions and plots them thus
-producing random psychedelic art.
+pictures like those shown below. To do so, we shall:
+1) devise a grammar for a certain class of expressions,
+2) design a Haskell datatype whose values correspond to these expressions,
+3) write code to evaluate the expressions, and then
+4) write a function that randomly generates such expressions and plots them -- thereby
+producing random psychedelic art (as can be seen on the nameplate of Rm 3148, which is the office of two of your TAs, Anish and Alex).
 
 **Color Images**
 
@@ -273,11 +265,7 @@ producing random psychedelic art.
 ![](/img/art_g_sample.jpg)\ ![](/img/gray2.jpg)\ ![](/img/gray3.jpg)
 
 
-### (a) 15 points
-
-The expressions described by the grammar:
-
-
+The expressions are described by the grammar:
 
 ```
 e ::= x
@@ -289,7 +277,8 @@ e ::= x
     | (e<e ? e : e)
 ```
 
-where pi stands for the constant 3.142, all functions over the variables
+where pi is the constant we all learned in grade school, rounded so that it
+fits in a Dobule. All functions are over the variables
 x,y, which are guaranteed to produce a value in the range [-1,1] when x and
 y are in that range. We can represent expressions of this grammar
 using values of the following datatype:
@@ -304,6 +293,8 @@ data Expr
   | Times   Expr Expr
   | Thresh  Expr Expr Expr Expr
 ```
+
+### (a) 15 points
 
 First, write a function
 
@@ -334,12 +325,12 @@ eval :: Double -> Double -> Expr -> Double
 ```
 
 such that `eval x y e` returns the result of evaluating
-the expression `e` at the point `(x, y)` that is, evaluating
+the expression `e` at the point `(x, y)`. That is, evaluating
 the result of `e` when `VarX` has the value `x` and `VarY` has
 the value `y`.
 
-* You should use library functions like,
- `sin`, and `cos` to build your evaluator.
+* You should use functions from Prelude like
+ `sin`, `cos`, and `pi` to build your evaluator.
 
 * Recall that `Sine VarX` corresponds to
   the expression `sin(pi*x)`
