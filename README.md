@@ -1,7 +1,6 @@
 # Assignment 2: Random Art (160 points)
 
-## Due by {TODO, RJ please put date here} 23:59:59
-
+## Due by Friday, May 3rd, 2019, 23:59:59
 
 ## Overview
 
@@ -43,7 +42,7 @@ your assignment will be graded against.
 When you run
 
 ```shell
-$ stack test
+$ make test
 ```
 
 Your last lines should have

@@ -7,15 +7,6 @@ STACK=stack --allow-different-user
 BUILD_OPTS=--ghc-options -O0 
 #####################################################################################################
 
-UNAME := $(shell uname)
-ifeq ($(UNAME), Linux)
-  FORMAT=aout
-else
-ifeq ($(UNAME), Darwin)
-  FORMAT=macho
-endif
-endif
-
 test: clean
 	$(STACK) test $(BUILD_OPTS)
 
@@ -40,3 +31,6 @@ upstream:
 
 update:
 	git pull upstream master
+
+ghci:
+	$(STACK) exec -- ghci
