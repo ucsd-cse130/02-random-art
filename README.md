@@ -146,7 +146,7 @@ tail-recursive function:
 wwhile :: (a -> (Bool, a)) -> a -> a
 ```
 
-such that `wwhile (f, x)` returns `x'` where there exist values
+such that `wwhile f x` returns `x'` where there exist values
 `v_0`,...,`v_n` such that
 
 - `x` is equal to `v_0`
