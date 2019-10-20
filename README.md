@@ -1,6 +1,8 @@
 # Assignment 2: Random Art (160 points)
 
-## Due by Friday, May 3rd, 2019, 23:59:59
+## Due by Wednesday, 10/30 23:59:59
+
+Get the assignment from [this link](https://classroom.github.com/a/Hvb2Bc3_). *DO NOT CLONE* this repository directly!
 
 ## Overview
 
@@ -31,7 +33,9 @@ with suitable Haskell implementations.
 
 ## Assignment Testing and Evaluation
 
+<!--
 Your functions/programs **must** compile and run on `ieng6.ucsd.edu`.
+-->
 
 Most of the points will be awarded automatically by
 **evaluating your functions against a given test suite**.
@@ -77,11 +81,13 @@ To submit your code, just do:
 $ make turnin
 ```
 
+or alternatively, just `git push` you code to your github classroom repository.
+
 ## Problem #1: Tail Recursion
 
 We say that a function is *tail recursive*
 if every recursive call is a [tail call](https://wiki.haskell.org/Tail_recursion)
-whose value is immediately returned by the procedure.
+whose value is immediately returned by the function.
 
 ### (a) 15 points
 
@@ -253,7 +259,7 @@ pictures like those shown below. To do so, we shall:
 2) design a Haskell datatype whose values correspond to these expressions,
 3) write code to evaluate the expressions, and then
 4) write a function that randomly generates such expressions and plots them -- thereby
-producing random psychedelic art (as can be seen on the nameplate of Rm 3148, which is the office of two of your TAs, Anish and Alex).
+producing random psychedelic art.
 
 **Color Images**
 
