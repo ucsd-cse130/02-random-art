@@ -283,7 +283,7 @@ e ::= x
 ```
 
 where pi is the constant we all learned in grade school, rounded so that it
-fits in a Dobule. All functions are over the variables
+fits in a Double. All functions are over the variables
 x,y, which are guaranteed to produce a value in the range [-1,1] when x and
 y are in that range. We can represent expressions of this grammar
 using values of the following datatype:
@@ -408,7 +408,7 @@ For example, running
 ghci> emitRandomGray 150 (3, 12)
 ```
 
-will generate a gray image `img/grag_150_3_12.png` by:
+will generate a gray image `img/gray_150_3_12.png` by:
 randomly generating an `Expr`  
 
 1. Whose  `depth` is equal to `3`,
