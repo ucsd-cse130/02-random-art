@@ -91,8 +91,8 @@ whose value is immediately returned by the function.
 
 ### (a) 15 points
 
-Without using any built-in functions, write a
-*tail-recursive* function
+Without using any library functions (except `(==)` on strings), 
+write a *tail-recursive* function
 
 ```haskell
 assoc :: Int -> String -> [(String, Int)] -> Int
@@ -104,9 +104,9 @@ such that
 assoc def key [(k1,v1), (k2,v2), (k3,v3);...])
 ```
 
-searches the list for the first i such that `ki` = `key`.
-If such a ki is found, then vi is returned.
-Otherwise, if no such ki exists in the list,
+searches the list for the first i such that `ki == key`.
+If such a `ki` is found, then `vi` is returned.
+Otherwise, if no such `ki` exists in the list,
 the default value `def` is returned.
 
 Once you have implemented the function, you
