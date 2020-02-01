@@ -1,6 +1,6 @@
 # Assignment 2: Random Art (160 points)
 
-## Due by Friday, May 3rd, 2019, 23:59:59
+## Due by Friday, January 7th, 2020, 23:59:59
 
 ## Overview
 
@@ -14,12 +14,12 @@ more than that, you should rethink your solution.
 The assignment is in the files:
 
 1. [src/TailRecursion.hs](/src/TailRecursion.hs) and
-   [src/RandomArt.hs](/src/RandomArt.hs) have skeleton
-   functions with missing bodies for you to fill in,
+   [src/RandomArt.hs](/src/RandomArt.hs) has skeleton
+   functions with missing bodies that you will fill in,
 
 2. [tests/Test.hs](/tests/Test.hs) has some sample tests
-   and a test harness for you to check your
-   solutions before submitting.
+   and testing code that you will use to check your
+   assignments before submitting.
 
 You should only need to modify the parts of the files which say:
 
@@ -177,7 +177,7 @@ The expression  `fixpointL f x0` should return the list
 
 * `x = x_0`
 * `f x_0 = x_1, f x_1 = x_2, f x_2 = x_3, ... f x_n = x_{n+1}`
-* `xn = x_{n+1}`
+* `x_n = x_{n+1}`
 
 When you are done, you should see the following behavior:
 
@@ -253,7 +253,7 @@ pictures like those shown below. To do so, we shall:
 2) design a Haskell datatype whose values correspond to these expressions,
 3) write code to evaluate the expressions, and then
 4) write a function that randomly generates such expressions and plots them -- thereby
-producing random psychedelic art (as can be seen on the nameplate of Rm 3148, which is the office of two of your TAs, Anish and Alex).
+producing random psychedelic art.
 
 **Color Images**
 
@@ -277,7 +277,7 @@ e ::= x
 ```
 
 where pi is the constant we all learned in grade school, rounded so that it
-fits in a Dobule. All functions are over the variables
+fits in a Double. All functions are over the variables
 x,y, which are guaranteed to produce a value in the range [-1,1] when x and
 y are in that range. We can represent expressions of this grammar
 using values of the following datatype:
