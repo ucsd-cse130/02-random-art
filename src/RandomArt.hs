@@ -25,7 +25,7 @@ data Expr
   | Average Expr Expr
   | Times   Expr Expr
   | Thresh  Expr Expr Expr Expr
-  | Range1 Expr
+  | Range1 Expr Expr 
   | Range2 Expr Expr Expr 
   deriving (Show)
 
@@ -86,7 +86,7 @@ exprToString (Cosine e)           = "cos("++ (exprToString e) ++")"
 exprToString (Average e1 e2)      = "(" ++ (exprToString e1) ++ "+" ++ (exprToString e2) ++ ")/2"
 exprToString (Times e1 e2)        = (exprToString e1) ++ "*" ++ (exprToString e2) 
 exprToString (Thresh e1 e2 e3 e4) = "("++(exprToString e1) ++ "<" ++ (exprToString e2) ++ "?" ++ (exprToString e3) ++ ":" ++ (exprToString e4) ++ ")"  
-
+--exprToString (Range
 --------------------------------------------------------------------------------
 -- | Evaluating Expressions at a given X, Y co-ordinate ------------------------
 --------------------------------------------------------------------------------
@@ -110,9 +110,10 @@ eval x y Times e1 e2 = (eval x y e1) * (eval x y e2)
 eval x y Thesh e1 e2 e3 e4   
           | (eval x y e1) < (eval x y e2)  = eval x y e3
           | otherwise = eval x y e4
-eval x y Range1 x y e 
-          | (eval x) (eval y)
-
+eval x y Range2 x y e = Range1 x y 
+eval x y Range1 x y
+          | ((eval x) < 1 && (eval x) >= -1 && (eval y) < 1 && (eval y) >= -1) = True 
+          | otherwise = False
 
 evalFn :: Double -> Double -> Expr -> Double
 evalFn x y e = assert (-1.0 <= rv && rv <= 1.0) rv
