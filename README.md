@@ -1,9 +1,5 @@
 # Assignment 2: Random Art (160 points)
 
-## Due by Wednesday, 10/30 23:59:59
-
-Get the assignment from [this link](https://classroom.github.com/a/a4MR1mre). *DO NOT CLONE* this repository directly!
-
 ## Overview
 
 The objective of this assignment is for you to have fun learning
@@ -91,8 +87,8 @@ whose value is immediately returned by the function.
 
 ### (a) 15 points
 
-Without using any library functions (except `(==)` on strings), 
-write a *tail-recursive* function
+Without using any built-in functions, write a
+*tail-recursive* function
 
 ```haskell
 assoc :: Int -> String -> [(String, Int)] -> Int
@@ -104,9 +100,9 @@ such that
 assoc def key [(k1,v1), (k2,v2), (k3,v3);...])
 ```
 
-searches the list for the first i such that `ki == key`.
-If such a `ki` is found, then `vi` is returned.
-Otherwise, if no such `ki` exists in the list,
+searches the list for the first i such that `ki` = `key`.
+If such a ki is found, then vi is returned.
+Otherwise, if no such ki exists in the list,
 the default value `def` is returned.
 
 Once you have implemented the function, you
@@ -283,7 +279,7 @@ e ::= x
 ```
 
 where pi is the constant we all learned in grade school, rounded so that it
-fits in a Double. All functions are over the variables
+fits in a Dobule. All functions are over the variables
 x,y, which are guaranteed to produce a value in the range [-1,1] when x and
 y are in that range. We can represent expressions of this grammar
 using values of the following datatype:
@@ -408,7 +404,7 @@ For example, running
 ghci> emitRandomGray 150 (3, 12)
 ```
 
-will generate a gray image `img/gray_150_3_12.png` by:
+will generate a gray image `img/grag_150_3_12.png` by:
 randomly generating an `Expr`  
 
 1. Whose  `depth` is equal to `3`,

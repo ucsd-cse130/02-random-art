@@ -1,8 +1,5 @@
 
 #####################################################################################################
-COURSE=cs130fa19
-ASGN=02
-NAME=random-art
 STACK=stack --allow-different-user
 BUILD_OPTS=--ghc-options -O0 
 #####################################################################################################
@@ -27,7 +24,7 @@ turnin:
 	git push origin master
 
 upstream:
-	git remote add upstream https://github.com/cse130-fa19/02-random-art.git
+	git remote add upstream https://github.com/cse130-assignments/02-random-art.git
 
 update:
 	git pull upstream master
