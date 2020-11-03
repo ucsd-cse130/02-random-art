@@ -106,7 +106,7 @@ unit2 sc = testGroup "Unit 1"
       (fixpointW g)
       0
       739085
-      "fixpointL 6"
+      "fixpointW 6"
   , mkTestIO
       (emitGray "sample.png" 150)
       sampleExpr3
