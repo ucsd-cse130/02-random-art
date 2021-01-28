@@ -18,7 +18,8 @@ tags:
 	hasktags -x -c lib/
 
 ghci:
-	$(STACK) exec -- ghci
+	mkdir -p ~/.tmpdir
+	TMPDIR=~/.tmpdir $(STACK) ghci
 
 turnin: 
 	git commit -a -m "turnin"
