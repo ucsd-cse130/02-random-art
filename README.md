@@ -1,6 +1,6 @@
 # Assignment 2: Random Art (160 points)
 
-## Due by Friday, February 7th, 2020, 23:59:59
+## Due by Wednesday, February 10th, 2021, 23:59:59
 
 ## Overview
 
