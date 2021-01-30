@@ -1,28 +1,24 @@
 
-STACK=cabal
+STACK=stack --allow-different-user
 BUILD_OPTS=--ghc-options -O0 
 
+test: clean
+	$(STACK) test $(BUILD_OPTS)
 
-
-.PHONY: clean
-
-test: init.txt
-	$(STACK) v2-test $(BUILD_OPTS) --test-show-details=always
-
-bin: init.txt
-	$(STACK) v2-build $(BUILD_OPTS)
+bin:
+	$(STACK) build $(BUILD_OPTS)
 
 clean: 
-	$(STACK) v2-clean
+	$(STACK) clean
 
 distclean: clean 
 	rm -rf .stack-work 
 
-ghci:
-	$(STACK) v2-repl $(BUILD_OPTS)
+tags:
+	hasktags -x -c lib/
 
-init.txt:
-	$(STACK) update > init.txt
+ghci:
+	$(STACK) exec -- ghci
 
 turnin: 
 	git commit -a -m "turnin"
