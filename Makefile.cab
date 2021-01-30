@@ -2,20 +2,27 @@
 STACK=cabal
 BUILD_OPTS=--ghc-options -O0 
 
-test: 
+
+
+.PHONY: clean
+
+test: init.txt
 	$(STACK) v2-test $(BUILD_OPTS) --test-show-details=always
 
-bin:
+bin: init.txt
 	$(STACK) v2-build $(BUILD_OPTS)
 
 clean: 
 	$(STACK) v2-clean
 
 distclean: clean 
-	rm -rf .stack-work 
+	rm -rf dist-newstyle 
 
-ghci:
-	$(STACK) repl
+ghci: init.txt
+	$(STACK) v2-repl $(BUILD_OPTS)
+
+init.txt:
+	$(STACK) update > init.txt
 
 turnin: 
 	git commit -a -m "turnin"
