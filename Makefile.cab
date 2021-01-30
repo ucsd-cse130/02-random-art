@@ -2,8 +2,8 @@
 STACK=cabal
 BUILD_OPTS=--ghc-options -O0 
 
-test: clean
-	$(STACK) v2-test $(BUILD_OPTS)
+test: 
+	$(STACK) v2-test $(BUILD_OPTS) --test-show-details=always
 
 bin:
 	$(STACK) v2-build $(BUILD_OPTS)
