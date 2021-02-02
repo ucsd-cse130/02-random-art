@@ -284,13 +284,13 @@ using values of the following datatype:
 
 ```haskell
 data Expr
-  = VarX
-  | VarY
-  | Sine    Expr
-  | Cosine  Expr
-  | Average Expr Expr
-  | Times   Expr Expr
-  | Thresh  Expr Expr Expr Expr
+  = VarX                            -- ^ VarX ~ x
+  | VarY                            -- ^ VarY ~ y
+  | Sine    Expr                    -- ^ Sine e ~ sin (pi * e)  
+  | Cosine  Expr                    -- ^ Cosine e ~ cos (pi * e)
+  | Average Expr Expr               -- ^ Average e1 e2 ~ (e1 + e2) / 2
+  | Times   Expr Expr               -- ^ Times e1 e2 ~ e1 * e2 
+  | Thresh  Expr Expr Expr Expr     -- ^ Thresh e1 e2 e2 e4 ~ (e1 < e2 ? e3 : e4)
 ```
 
 ### (a) 15 points
