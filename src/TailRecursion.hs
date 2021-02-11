@@ -25,14 +25,15 @@ import Prelude hiding (lookup)
      ** your function should be tail recursive **
  -}
 
--- >>> assoc 0 "william" [("ranjit", 85), ("william",23), ("moose",44)])
+-- >>> assoc 0 "william" [("ranjit", 85), ("william",23), ("moose",44)]
 -- 23
 --
 -- >>> assoc 0 "bob" [("ranjit",85), ("william",23), ("moose",44)]
 -- 0
 
 assoc :: Int -> String -> [(String, Int)] -> Int
-assoc def key kvs = error "TBD:assoc"
+assoc def _ [] = def
+assoc def key  ((f, s):kvs) = if key == f then s else assoc def key kvs
 
 --------------------------------------------------------------------------------
 {- | `removeDuplicates l`
@@ -59,8 +60,8 @@ removeDuplicates l = reverse (helper [] l)
     helper seen []     = seen
     helper seen (x:xs) = helper seen' rest'
       where
-        seen'          = error "TBD:helper:seen"
-        rest'          = error "TBD:helper:rest"
+        seen'          = if x `elem` seen then seen else x:seen
+        rest'          = xs
 
 --------------------------------------------------------------------------------
 {- | `wwhile f x` returns `x'` where there exist values
@@ -78,8 +79,14 @@ removeDuplicates l = reverse (helper [] l)
 -- >>> let f x = let xx = x * x * x in (xx < 100, xx) in wwhile f 2
 -- 512
 
+-- >>> let f x = let xx = x * x * x in (xx < 1000, xx) in wwhile f 2
+-- 134217728
+
+-- >>> let f x = let xx = x * x * x in (xx < 134217729, xx) in wwhile f 2
+-- 2417851639229258349412352
+
 wwhile :: (a -> (Bool, a)) -> a -> a
-wwhile f n = error "TBD:wwhile"
+wwhile f n = if fst (f n) then wwhile f (snd (f n)) else snd (f n)
 
 --------------------------------------------------------------------------------
 {- | The **fixpoint** of a function `f` starting at `x`
@@ -119,7 +126,7 @@ wwhile f n = error "TBD:wwhile"
   -}
 
 fixpointL :: (Int -> Int) -> Int -> [Int]
-fixpointL f x = error "TBD:fixpointL"
+fixpointL f x = if x == f x then [x] else x:fixpointL f (f x)
 
 -- You should see the following behavior at the prompt:
 
@@ -151,11 +158,11 @@ collatz n
 {- | Now refactor your implementation of `fixpointL` so that it just returns
      the LAST element of the list, i.e. the `xn` that is equal to `f xn`
   -}
-
+-- if x == f x then [x] else x:fixpointL f (f x)
 fixpointW :: (Int -> Int) -> Int -> Int
 fixpointW f x = wwhile wwf x
  where
-   wwf        = error "TBD:fixpoint:wwf"
+   wwf        = \x -> if x == f x then (False, x) else (True, f x)
 
 -- >>> fixpointW collatz 1
 -- 1
