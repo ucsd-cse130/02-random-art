@@ -1,13 +1,8 @@
 {- | CSE 130: Programming Assignment 2
-
      Do not change the skeleton code!
-
      You may only replace the `error "TBD:..."` parts.
-
      For this assignment, you may use the following library functions:
-
      append (++)
-
  -}
 
 module TailRecursion where
@@ -17,36 +12,29 @@ import Prelude hiding (lookup)
 --------------------------------------------------------------------------------
 
 {- | `assoc def key [(k1,v1), (k2,v2), (k3,v3);...])`
-
      searches the list for the first i such that `ki` = `key`.
      If such a ki is found, then vi is returned.
      Otherwise, if no such ki exists in the list, `def` is returned.
-
      ** your function should be tail recursive **
  -}
 
--- >>> assoc 0 "william" [("ranjit", 85), ("william",23), ("moose",44)]
+-- >>> assoc 0 "william" [("ranjit", 85), ("william",23), ("moose",44)])
 -- 23
 --
 -- >>> assoc 0 "bob" [("ranjit",85), ("william",23), ("moose",44)]
 -- 0
 
 assoc :: Int -> String -> [(String, Int)] -> Int
-assoc def _ [] = def
-assoc def key  ((f, s):kvs) = if key == f then s else assoc def key kvs
+assoc def key kvs = error "TBD:assoc"
 
 --------------------------------------------------------------------------------
 {- | `removeDuplicates l`
-
      returns the list of elements of `l` with duplicates
      that is, second, third ... occurrences, removed,
      and where the remaining elements appear in the
      same order as in l.
-
      ** your `helper` should be tail recursive **
-
      for this problem only, you may use the library functions:
-
       * elem
  -}
 
@@ -60,39 +48,28 @@ removeDuplicates l = reverse (helper [] l)
     helper seen []     = seen
     helper seen (x:xs) = helper seen' rest'
       where
-        seen'          = if x `elem` seen then seen else x:seen
-        rest'          = xs
+        seen'          = error "TBD:helper:seen"
+        rest'          = error "TBD:helper:rest"
 
 --------------------------------------------------------------------------------
 {- | `wwhile f x` returns `x'` where there exist values
-
       `v_0`,...,`v_n` such that
-
       - `x` is equal to `v_0`
       - `x'` is equal to `v_n`
       - for each `i` between `0` and `n-2`, we have `f v_i` equals `(true, v_i+1)`
       - `f v_n-1` equals `(false, v_n)`.
-
     ** your function should be tail recursive **
  -}
 
 -- >>> let f x = let xx = x * x * x in (xx < 100, xx) in wwhile f 2
 -- 512
 
--- >>> let f x = let xx = x * x * x in (xx < 1000, xx) in wwhile f 2
--- 134217728
-
--- >>> let f x = let xx = x * x * x in (xx < 134217729, xx) in wwhile f 2
--- 2417851639229258349412352
-
 wwhile :: (a -> (Bool, a)) -> a -> a
-wwhile f n = if fst (f n) then wwhile f (snd (f n)) else snd (f n)
+wwhile f n = error "TBD:wwhile"
 
 --------------------------------------------------------------------------------
 {- | The **fixpoint** of a function `f` starting at `x`
-
 `fixpoint f x` returns the FIRST element of the sequence x0, x1, x2, ...
-
         x0 = x
         x1 = f x0
         x2 = f x1
@@ -100,33 +77,23 @@ wwhile f n = if fst (f n) then wwhile f (snd (f n)) else snd (f n)
         .
         .
         .
-
       such that xn = f x_{n-1}
-
       That is,
-
       `fixpoint f x` should compute `f x` and then
-
       * IF x == f x then the fixpoint is `x`
       * OTHERWISE, the it is the (recursively computed) fixpoint of `f x`.
-
  -}
 
 {- | Fill in the implementation of `fixpointL f x0` which returns
-
      the list [x_0, x_1, x_2, x_3, ... , x_n]
-
      where
-
        * x = x_0
-
        * f x_0 = x_1, f x_1 = x_2, f x_2 = x_3, ... f x_n = x_{n+1}
-
        * xn = x_{n+1}
   -}
 
 fixpointL :: (Int -> Int) -> Int -> [Int]
-fixpointL f x = if x == f x then [x] else x:fixpointL f (f x)
+fixpointL f x = error "TBD:fixpointL"
 
 -- You should see the following behavior at the prompt:
 
@@ -158,11 +125,11 @@ collatz n
 {- | Now refactor your implementation of `fixpointL` so that it just returns
      the LAST element of the list, i.e. the `xn` that is equal to `f xn`
   -}
--- if x == f x then [x] else x:fixpointL f (f x)
+
 fixpointW :: (Int -> Int) -> Int -> Int
 fixpointW f x = wwhile wwf x
  where
-   wwf        = \x -> if x == f x then (False, x) else (True, f x)
+   wwf        = error "TBD:fixpoint:wwf"
 
 -- >>> fixpointW collatz 1
 -- 1
