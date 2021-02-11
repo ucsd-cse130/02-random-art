@@ -22,6 +22,8 @@ data Expr
   | VarY
   | Sine    Expr
   | Cosine  Expr
+  | SHLEEB  Expr
+  | CLEMPH  Expr
   | Average Expr Expr
   | Times   Expr Expr
   | Thresh  Expr Expr Expr Expr
@@ -78,28 +80,40 @@ sampleExpr3 =
 
 exprToString :: Expr -> String
 exprToString VarX                 = "x"
-exprToString VarY                 = error "TBD:VarY"
-exprToString (Sine e)             = error "TBD:Sin"
-exprToString (Cosine e)           = error "TBD:Cos"
-exprToString (Average e1 e2)      = error "TBD:Avg"
-exprToString (Times e1 e2)        = error "TBD:Times"
-exprToString (Thresh e1 e2 e3 e4) = error "TBD:Thresh"
+exprToString VarY                 = "y"
+exprToString (Sine e)             = printf "sin(pi*%s)"    (exprToString e)
+exprToString (Cosine e)           = printf "cos(pi*%s)"    (exprToString e)
+exprToString (SHLEEB e)           = printf "sin^2(pi*%s)"   (exprToString e)
+exprToString (CLEMPH e)           = printf "tanh(pi*%s)"   (exprToString e)
+exprToString (Average e1 e2)      = printf "((%s+%s)/2)"   (exprToString e1) (exprToString e2)
+exprToString (Times e1 e2)        = printf "%s*%s"         (exprToString e1) (exprToString e2)
+exprToString (Thresh e1 e2 e3 e4) = printf "(%s<%s?%s:%s)" (exprToString e1) (exprToString e2) (exprToString e3) (exprToString e4)
 
 --------------------------------------------------------------------------------
 -- | Evaluating Expressions at a given X, Y co-ordinate ------------------------
 --------------------------------------------------------------------------------
-
+-- "sin(pi*((x+y)/2))"
 -- >>> eval  0.5 (-0.5) sampleExpr0
 -- 0.0
 --
 -- >>> eval  0.3 0.3    sampleExpr0
 -- 0.8090169943749475
 --
+--"(x<y?sin(pi*x):cos(pi*y))"
 -- >>> eval  0.5 0.2    sampleExpr2
 -- 0.8090169943749475
 
+
 eval :: Double -> Double -> Expr -> Double
-eval x y e = error "TBD:eval"
+eval x _ VarX                 = x
+eval _ y VarY                 = y
+eval x y (Sine e)             = sin(pi * eval x y e )
+eval x y (Cosine e)           = cos(pi * eval x y e)
+eval x y (SHLEEB e)           = sin(pi * eval x y e)**2
+eval x y (CLEMPH e)           = tanh(pi * eval x y e)
+eval x y (Average e1 e2)      = (eval x y e1 + eval x y e2)/2
+eval x y (Times e1 e2)        = eval x y e1 * eval x y e2
+eval x y (Thresh e1 e2 e3 e4) = if eval x y e1 < eval x y e2 then eval x y e3 else eval x y e4
 
 evalFn :: Double -> Double -> Expr -> Double
 evalFn x y e = assert (-1.0 <= rv && rv <= 1.0) rv
@@ -138,7 +152,17 @@ build 0
   | otherwise = VarY
   where
     r         = rand 10
-build d       = error "TBD:build"
+    
+build d        
+  | i == 0 =    Sine     (build (d-1))
+  | i == 1 =    Cosine   (build (d-1))
+  | i == 2 =    SHLEEB   (build (d-1))
+  | i == 3 =    CLEMPH   (build (d-1))
+  | i == 4 =    Average  (build (d-1)) (build (d-1))
+  | i == 5 =    Times    (build (d-1)) (build (d-1))
+  | otherwise = Thresh   (build (d-1)) (build (d-1)) (build (d-1)) (build (d-1))
+  where
+    i         = rand 7
 
 --------------------------------------------------------------------------------
 -- | Best Image "Seeds" --------------------------------------------------------
@@ -146,16 +170,16 @@ build d       = error "TBD:build"
 
 -- grayscale
 g1, g2, g3 :: (Int, Int)
-g1 = (error "TBD:depth1", error "TBD:seed1")
-g2 = (error "TBD:depth2", error "TBD:seed2")
-g3 = (error "TBD:depth3", error "TBD:seed3")
+g1 = (8, 12)
+g2 = (10, 8)
+g3 = (11, 9)
 
 
 -- grayscale
 c1, c2, c3 :: (Int, Int)
-c1 = (error "TBD:depth1", error "TBD:seed1")
-c2 = (error "TBD:depth2", error "TBD:seed2")
-c3 = (error "TBD:depth3", error "TBD:seed3")
+c1 = (12,8)
+c2 = (4,20)
+c3 = (6,9)
 
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
