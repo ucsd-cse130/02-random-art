@@ -30,4 +30,4 @@ update:
 	git pull upstream master
 
 ghci:
-	$(STACK) exec -- ghci
+	$(STACK) ghci
