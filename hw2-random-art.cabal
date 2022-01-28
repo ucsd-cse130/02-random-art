@@ -29,6 +29,7 @@ test-suite test
   type:             exitcode-stdio-1.0
   hs-source-dirs:   tests
   ghc-options:      -threaded
+  other-modules:    Common
   main-is:          Test.hs
   build-depends:    base,
                     directory,
