@@ -1,7 +1,5 @@
 # Assignment 2: Random Art (160 points)
 
-## Due by Wednesday, February 10th, 2021, 23:59:59
-
 ## Overview
 
 The objective of this assignment is for you to have fun learning
