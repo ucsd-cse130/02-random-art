@@ -389,7 +389,7 @@ Change and extend the function to generate interesting expressions `Expr`.
   For example, in the above, at depth `0` we generate the expressions  
   `VarX` and `VarY` with equal probability.
 
-- `depth` is a a maximum nesting dept; a random expression of depth `d` is
+- `depth` is the nesting depth: a random expression of depth `d` is
   built by randomly composing  sub-expressions of depth `d-1` and the
   only expressions of depth `0` are `VarX` and `VarY`.
 
